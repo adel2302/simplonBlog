@@ -45,4 +45,5 @@ group :development do
   gem 'spring'
 end
 gem 'simple_form'
-gem 'bootstrap-sass', '~> 3.3.6'
+gem 'bootstrap-sass', '~> 3.3.6' #design
+gem 'devise' #authentification
