@@ -36,6 +36,13 @@
         </div>
       </div>
     </nav>
+    <% if user_signed_in? %>
+      <div class="row">
+        <div class="col-md-6">
+          <p>Bonjour <%= current_user.email %>, il est <%= Time.now.strftime("%H:%M") %></p>
+        </div>
+      </div>
+    <% end %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 <%= yield %>
