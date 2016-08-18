@@ -1,6 +1,10 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <h1 class="text-center">Mes articles</h1>
+    <% if current_user.role == "admin" %>
+      <h1 class="text-center">Mes articles</h1>
+    <% else %>
+      <h1 class="text-center">liste d'articles</h1>
+    <% end %>
   </div>
 </div>
 <% if current_user.role == 'admin' %>
@@ -40,28 +44,27 @@
     </div>
   </div>
 <% else %>
-
-  <table>
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th>Content</th>
-        <th>Published</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @articles.each do |article| %>
-        <% if article.published %>
-        <tr>
-          <td><%= article.title %></td>
-          <td><%= article.content %></td>
-          <td><%= article.published %></td>
-          <td><%= link_to 'Show', article %></td>
-        </tr>
-        <% end %>
+  <div class="row">
+    <% @articles.each do |article| %>
+      <% if article.published %>
+        <div class="col-md-3">
+          <div class="row">
+            <div class="col-md-12">
+              <h3 class="text-center"><%= article.title %></h3>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <%= image_tag article.image.url(:medium), class: "some class here" %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <p><%= truncate(article.content, length: 100) %><%= link_to 'More', article %></p>
+            </div>
+          </div>
+        </div>
       <% end %>
-    </tbody>
-  </table>
+    <% end %>
+  </div>
 <% end %>
