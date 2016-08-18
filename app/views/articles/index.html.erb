@@ -1,13 +1,13 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <% if current_user.role == "admin" %>
+    <% if user_signed_in? && current_user.role == "admin" %>
       <h1 class="text-center">Mes articles</h1>
     <% else %>
       <h1 class="text-center">liste d'articles</h1>
     <% end %>
   </div>
 </div>
-<% if current_user.role == 'admin' %>
+<% if user_signed_in? && current_user.role == 'admin' %>
   <div class="row">
     <div class="col-md-1">
       <%= link_to url_for(action: :new) do %>
