@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :destroy]
   before_action :check_is_admin, only: [:new, :edit, :destroy]
-  before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :set_article, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
 
   # GET /articles
   # GET /articles.json
@@ -68,6 +68,16 @@ class ArticlesController < ApplicationController
    if current_user.role != "admin"
       redirect_to articles_url
    end
+  end
+
+  def upvote
+    @article.upvote_by current_user
+    redirect_to :back
+  end
+
+  def downvote
+   @article.downvote_by current_user
+   redirect_to :back
   end
 
   private

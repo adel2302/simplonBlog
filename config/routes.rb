@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   root 'articles#index'
   resources :articles do
     resources :comments
+    member do
+      put "like", to: "articles#upvote"
+      put "dislike", to: "articles#downvote"
+    end
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
