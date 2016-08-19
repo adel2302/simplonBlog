@@ -22,12 +22,15 @@
 <div id="comments">
   <%= render :partial => @article.comments %>
 </div>
-<%= simple_form_for [@article, Comment.new]  do |f| %>
-  <div class="field">
-    <%= f.text_area :content, class: "form-control" %>
-  </div>
-  <br>
-  <%= f.submit "Add Comment", class: "btn btn-primary" %>
+<% if user_signed_in? && current_user.role != 'admin'%>
+  <%= simple_form_for [@article, Comment.new]  do |f| %>
+    <div class="field">
+      <%= f.text_area :content, class: "form-control" %>
+    </div>
+    <%= f.submit "Add Comment", class: "btn btn-primary" %>
+  <% end %>
+<% else %>
+  <p>Connecter vous laissez un commentaire.</p>
 <% end %>
 
 
