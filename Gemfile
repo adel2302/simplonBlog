@@ -49,3 +49,4 @@ gem 'bootstrap-sass', '~> 3.3.6' #design
 gem 'devise' #authentification
 gem "paperclip", "~> 5.0.0" #images
 gem 'acts_as_votable', '~> 0.10.0'
+gem 'acts-as-taggable-on', '~> 4.0'

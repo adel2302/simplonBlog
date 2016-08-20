@@ -6,11 +6,14 @@
           <%= f.input :title %>
           <%= f.input :content, as: :text %>
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
               <%= f.file_field :image %>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
               <%= f.input :published %>
+            </div>
+            <div class="col-md-4">
+              <%= f.input :tag_list %>
             </div>
           </div>
         </div>
