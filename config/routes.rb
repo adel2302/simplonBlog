@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       put "dislike", to: "articles#downvote"
     end
   end
+  get 'tags/:tag', to: 'articles#index', as: :tag
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

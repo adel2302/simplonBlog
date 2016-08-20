@@ -7,6 +7,18 @@
     <% end %>
   </div>
 </div>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="thumbnail">
+        <p><%= t('tags') %>:
+          <%= link_to t('all'), root_path %>
+          <% tag_cloud Article.tag_counts, %w[s m l] do |tag, css_class| %>
+            <%= link_to tag.name, tag_path(tag.name), class: css_class %>
+          <% end %>
+        </p>
+      </div>
+    </div>
+</div>
 <% if user_signed_in? && current_user.role == 'admin' %>
   <div class="row">
     <div class="col-md-1">
