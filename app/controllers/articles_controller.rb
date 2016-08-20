@@ -7,9 +7,9 @@ class ArticlesController < ApplicationController
   # GET /articles.json
   def index
     if params[:tag]
-      @articles = Article.order(created_at: :desc).tagged_with(params[:tag])
+      @articles = Article.order(created_at: :desc).page(params[:page]).per(1).tagged_with(params[:tag])
     else
-      @articles = Article.order(created_at: :desc)
+      @articles = Article.order(created_at: :desc).page(params[:page]).per(1)
     end
   end
 
