@@ -1,60 +1,73 @@
 <div class="row">
-  <div class="col-md-3 col-md-offset-5">
+  <div class="col-md-9">
     <h1 class="text-center"><%= @article.title %></h1>
   </div>
 </div>
 <div class="row">
-  <div class="col-md-3 col-md-offset-5">
+  <div class="col-md-4">
     <%= image_tag @article.image.url(:medium) %>
   </div>
-</div>
-<div class="row">
-  <div class="col-md-5 col-md-offset-4">
+  <div class="col-md-6">
     <p class="text-center"><%= @article.content %></p>
   </div>
 </div>
-
-<div class="row">
-  <div class="col-md-5 col-md-offset-4">
-    <p>
-      <%= link_to like_article_path(@article), method: :put, class: "btn btn-primary" do %>
-        <span class="glyphicon glyphicon-thumbs-up"></span>
-      <% end %>
-      <%= @article.get_upvotes.size %>
-      <%= link_to dislike_article_path(@article), method: :put, class: "btn btn-primary" do %>
-        <span class="glyphicon glyphicon-thumbs-down"></span>
-      <% end %>
-      <%= @article.get_downvotes.size %>
-    </p>
+<% if user_signed_in? %>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <p>
+        <%= link_to like_article_path(@article), method: :put, class: "btn btn-primary" do %>
+          <span class="glyphicon glyphicon-thumbs-up"></span>
+        <% end %>
+        <%= @article.get_upvotes.size %>
+        <%= link_to dislike_article_path(@article), method: :put, class: "btn btn-primary" do %>
+          <span class="glyphicon glyphicon-thumbs-down"></span>
+        <% end %>
+        <%= @article.get_downvotes.size %>
+      </p>
+    </div>
+  </div>
+<% end %>
+<div class=" row text-center">
+  <div class="col-md-12">
+    <h2 class="comments_title"><%= @article.comments.count %> Comments</h2>
   </div>
 </div>
-
-
-
-<h3 class="comments_title">
-  <%= @article.comments.count %> Comments
-</h3>
-
-<div id="comments">
-  <%= render :partial => @article.comments %>
+<div class="row">
+  <div class="col-md-12">
+    <div id="comments">
+      <%= render :partial => @article.comments %>
+    </div>
+  </div>
 </div>
 <% if user_signed_in? && current_user.role != 'admin'%>
   <%= simple_form_for [@article, Comment.new]  do |f| %>
-    <div class="field">
-      <%= f.text_area :content, class: "form-control" %>
+    <div class="row">
+      <div class="col-md-12">
+        <%= f.text_area :content, class: "form-control" %>
+      </div>
     </div>
-    <%= f.submit "Add Comment", class: "btn btn-primary" %>
+    <br>
+    <div class="row">
+      <div class="col-md-2">
+        <%= f.submit "Add Comment", class: "btn btn-primary" %>
+      </div>
+      <div class="col-md-2">
+        <%= link_to 'Back', articles_path, class: "btn btn-primary" %>
+      </div>
+    </div>
   <% end %>
 <% else %>
-  <p>Connecter vous laissez un commentaire.</p>
+  <div class="row">
+    <div class="col-md-4">
+      <p>Connectez vous pour laisser un commentaire.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+       <%= link_to 'Back', articles_path, class: "btn btn-primary" %>
+       <% if user_signed_in? && current_user.role == "admin" %>
+          <%= link_to 'Edit', edit_article_path(@article) %> |
+        <% end %>
+    </div>
+  </div>
 <% end %>
-
-
-
-
-
-
-<% if user_signed_in? && current_user.role == "admin" %>
-  <%= link_to 'Edit', edit_article_path(@article) %> |
-<% end %>
-<%= link_to 'Back', articles_path %>
