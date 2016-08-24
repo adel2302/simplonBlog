@@ -1,25 +1,35 @@
 <%= simple_form_for(@article, html: { multipart: true }) do |f| %>
   <%= f.error_notification %>
     <div class="row">
-      <div class="col-md-6 col-md-offset-3 text-center">
+      <div class="col-md-10 col-md-offset-1 text-center">
         <div class="form-inputs">
           <%= f.input :title %>
-          <%= f.input :content, as: :text %>
+          <%= f.input :content, as: :text, input_html: {class: "vresize"} %>
           <div class="row">
             <div class="col-md-4">
-              <%= f.file_field :image %>
-            </div>
-            <div class="col-md-4">
-              <%= f.input :published %>
-            </div>
-            <div class="col-md-4">
               <%= f.input :tag_list %>
+            </div>
+            <div class="col-md-4">
+              <%= f.file_field :image, class: "btn btn-primary position_file_fiel" %>
+            </div>
+            <div class="col-md-4">
+              <%= f.input :published, label: false, input_html: {class: 'switch', 'data-on-text': 'publier', 'data-off-text': 'brouillon'} %>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="form-actions">
-      <%= f.button :submit %>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3 text-center">
+        <div class="form-actions">
+          <%= f.button :submit, class: "btn btn-primary" %>
+        </div>
+      </div>
     </div>
 <% end %>
+
+<script type="text/javascript">
+  $(function() {
+    $("#article_published").bootstrapSwitch();
+});
+</script>

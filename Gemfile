@@ -51,3 +51,4 @@ gem "paperclip", "~> 5.0.0" #images
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'acts-as-taggable-on', '~> 4.0'
 gem 'kaminari' #pagination
+gem 'bootstrap-switch-rails', '~> 3.3.3'

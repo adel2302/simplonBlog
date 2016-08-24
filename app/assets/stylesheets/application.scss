@@ -16,6 +16,7 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "bootstrap3-switch";
 
 .s { font-size: 1.2em;}
 .m { font-size: 1.4em;}
@@ -38,4 +39,18 @@ img:hover {
     opacity: 0.9; /* opacite au survol */
     -ms-filter:"prodig:DXImageTransform.Microsoft.Alpha(Opacity=90)"; /* Hack IE 8 */
     filter: alpha(opacity = 90); /* Hack IE 5-7 */
+}
+
+.vresize {
+  resize: vertical;
+}
+
+.position_file_fiel {
+    margin-top: 1.5em;
+    margin-left: 4em;
+}
+
+.article_published {
+    margin-left: 8em;
+    margin-top: 1.5em;
 }
