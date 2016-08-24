@@ -6,10 +6,10 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    if params[:tag]
-      @articles = Article.order(created_at: :desc).page(params[:page]).per(1).tagged_with(params[:tag])
+    if params[:tag] && current_user != "admin"
+      @articles = Article.order(created_at: :desc).page(params[:page]).per(4).tagged_with(params[:tag])
     else
-      @articles = Article.order(created_at: :desc).page(params[:page]).per(1)
+      @articles = Article.order(created_at: :desc).page(params[:page]).per(4)
     end
   end
 

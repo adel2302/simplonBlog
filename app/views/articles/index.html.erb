@@ -2,22 +2,8 @@
   <div class="col-md-6 col-md-offset-3">
     <% if user_signed_in? && current_user.role == "admin" %>
       <h1 class="text-center">Mes articles</h1>
-    <% else %>
-      <h1 class="text-center">liste d'articles</h1>
     <% end %>
   </div>
-</div>
-  <div class="row">
-    <div class="col-md-6 col-md-offset-3">
-      <div class="thumbnail">
-        <p><%= t('tags') %>:
-          <%= link_to t('all'), root_path %>
-          <% tag_cloud Article.tag_counts, %w[s m l] do |tag, css_class| %>
-            <%= link_to tag.name, tag_path(tag.name), class: css_class %>
-          <% end %>
-        </p>
-      </div>
-    </div>
 </div>
 <% if user_signed_in? && current_user.role == 'admin' %>
   <div class="row">
@@ -57,24 +43,29 @@
   </div>
 <% else %>
   <div class="row">
+    <div class="col-md-12">
+      <div class="well">
+        <p><%= t('theme') %>:
+          <%= link_to t('all'), root_path %>
+          <% tag_cloud Article.tag_counts, %w[s m l] do |tag, css_class| %>
+            <%= link_to tag.name, tag_path(tag.name), class: css_class %>
+          <% end %>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
     <% @articles.each do |article| %>
       <% if article.published %>
-        <div class="col-md-3">
-          <div class="row">
-            <div class="col-md-12">
-              <h3 class="text-center"><%= article.title %></h3>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <%= image_tag article.image.url(:medium), class: "some class here" %>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <p><%= truncate(article.content, length: 100) %><%= link_to 'More', article %></p>
-            </div>
-          </div>
+        <div class="col-md-6">
+          <h2 class="text-center"><%= article.title %></h2>
+          <p><span class="glyphicon glyphicon-time"></span>Posté le:<%= article.created_at.strftime("%d/%m/20%y") %></p>
+          <hr>
+          <%= image_tag article.image.url(:medium) %>
+          <hr>
+          <p class="well"><%= truncate(article.content, length: 200) %></p>
+          <%= link_to 'More', article, class: "btn btn-primary" %>
+          <hr>
         </div>
       <% end %>
     <% end %>
