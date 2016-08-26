@@ -19,7 +19,6 @@
 @import "bootstrap3-switch";
 
 body {
-  color: white;
   background-image: image-url('index.jpg'); // link to /assets/images/index.jpg
   background-repeat: no-repeat;
   background-position:center;
@@ -41,6 +40,7 @@ opacity: 0.3;/* l'opacite que vous voulez au depart */
     -o-transition: opacity 0.5s ease-in-out;/* transition pour Opéra */
     transition: opacity 0.5s ease-in-out;
     width: 262px;
+    height: 350px;
 
 }
 
@@ -66,4 +66,8 @@ img:hover {
 
 h2 {
     font-size: 15px;
+}
+
+.color_white {
+    color: white;
 }
