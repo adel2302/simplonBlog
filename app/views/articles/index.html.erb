@@ -7,17 +7,35 @@
 </div>
 <% if user_signed_in? && current_user.role == 'admin' %>
   <div class="row">
+    <div class="col-md-2">
+      <fieldset class="filter-panel">
+        <%= search_form_for @q do |f| %>
+          <div class="form-group dictionary">
+            <%= f.search_field :title_cont, placeholder: 'title' %>
+          </div>
+          <div class="form-group dictionary">
+            <%= f.search_field :content_cont, placeholder: 'content' %>
+          </div>
+          <div class="form-group dictionary">
+            <%= f.check_box :published_eq, class: 'switch', 'data-on-label': 'publier', 'data-off-label': 'brouillon' %>
+          </div>
+          <%= f.button :submit, class: 'btn btn-primary btn-block' %>
+        <% end %>
+        <br>
+        <%= link_to t('reset_search'), url_for(action: 'index'), class: 'btn btn-default btn-block' %>
+      </fieldset>
+    </div>
     <div class="col-md-1">
       <%= link_to url_for(action: :new) do %>
         <span class="btn btn-sm btn-default glyphicon glyphicon-plus"></span>
       <% end %>
     </div>
-    <div class="col-md-10">
+    <div class="col-md-8">
       <table border class="table table-striped table-condensed table-dictionnary">
         <thead>
           <tr>
-            <th>Titre</th>
-            <th>Publié</th>
+            <th><%= sort_link(@q, :title, default_order: :asc) %></th>
+            <th><%= sort_link(@q, :published, default_order: :asc) %></th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -72,3 +90,9 @@
   </div>
   <%= paginate @articles %>
 <% end %>
+
+<script type="text/javascript">
+  $(function() {
+    $("#q_published_eq").bootstrapSwitch();
+});
+</script>
