@@ -18,6 +18,14 @@
 @import "bootstrap";
 @import "bootstrap3-switch";
 
+body {
+  color: white;
+  background-image: image-url('index.jpg'); // link to /assets/images/index.jpg
+  background-repeat: no-repeat;
+  background-position:center;
+  background-size: cover;
+}
+
 .s { font-size: 1.2em;}
 .m { font-size: 1.4em;}
 .l { font-size: 1.6em;}
@@ -32,6 +40,7 @@ opacity: 0.3;/* l'opacite que vous voulez au depart */
     -moz-transition: opacity 0.5s ease-in-out;/* transition pour Firefox */
     -o-transition: opacity 0.5s ease-in-out;/* transition pour Opéra */
     transition: opacity 0.5s ease-in-out;
+    width: 262px;
 
 }
 
@@ -53,4 +62,8 @@ img:hover {
 .article_published {
     margin-left: 8em;
     margin-top: 1.5em;
+}
+
+h2 {
+    font-size: 15px;
 }
