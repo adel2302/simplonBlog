@@ -9,7 +9,12 @@ class ArticlesController < ApplicationController
     if params[:tag] && current_user != "admin"
       @articles = Article.order(created_at: :desc).page(params[:page]).per(4).tagged_with(params[:tag])
     else
-      @articles = Article.order(created_at: :desc).page(params[:page]).per(4)
+      if user_signed_in? && current_user.role == "admin"
+        @q = Article.ransack(params[:q])
+        @articles = @q.result.order(created_at: :desc)
+      else
+        @articles = Article.order(created_at: :desc).page(params[:page]).per(10)
+      end
     end
   end
 
