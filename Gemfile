@@ -53,3 +53,4 @@ gem 'acts-as-taggable-on', '~> 4.0'
 gem 'kaminari' #pagination
 gem 'bootstrap-switch-rails', '~> 3.3.3'
 gem 'ransack' #search
+gem 'aws-sdk', '~> 2.3'
