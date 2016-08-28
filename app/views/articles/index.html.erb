@@ -11,40 +11,35 @@
       <fieldset class="filter-panel">
         <%= search_form_for @q do |f| %>
           <div class="form-group dictionary">
-            <%= f.search_field :title_cont, placeholder: 'title' %>
+            <%= f.search_field :title_cont, placeholder: t('.title') %>
           </div>
           <div class="form-group dictionary">
-            <%= f.search_field :content_cont, placeholder: 'content' %>
+            <%= f.search_field :content_cont, placeholder: t('.content') %>
           </div>
           <div class="form-group dictionary">
-            <%= f.check_box :published_eq, class: 'switch', 'data-on-label': 'publier', 'data-off-label': 'brouillon' %>
+            <%= f.check_box :published_eq, class: 'switch', 'data-on-text': 'publier', 'data-off-text': 'brouillon' %>
           </div>
-          <%= f.button :submit, class: 'btn btn-primary btn-block' %>
+          <%= f.button t(:submit), class: 'btn btn-primary btn-block' %>
         <% end %>
         <br>
         <%= link_to t('reset_search'), url_for(action: 'index'), class: 'btn btn-default btn-block' %>
       </fieldset>
     </div>
-    <div class="col-md-1">
-      <%= link_to url_for(action: :new) do %>
-        <span class="btn btn-sm btn-default glyphicon glyphicon-plus"></span>
-      <% end %>
-    </div>
-    <div class="col-md-8">
-      <table border class="table table-striped table-condensed table-dictionnary">
+    <div class="col-md-8 col-md-offset-1">
+      <table border class="table">
         <thead>
           <tr>
-            <th><%= sort_link(@q, :title, default_order: :asc) %></th>
-            <th><%= sort_link(@q, :published, default_order: :asc) %></th>
-            <th>Actions</th>
+            <th class="info"><%= sort_link(@q, :title, default_order: :asc) %></th>
+            <th class="info"><%= sort_link(@q, :published, default_order: :asc) %></th>
+            <th class="info">Actions</th>
           </tr>
         </thead>
         <tbody>
           <% @articles.each do |article| %>
           <tr>
-            <td><%= link_to article.title, edit_article_path(article)%></td>
-            <td><%= article.published%></td>
-            <td><%= link_to edit_article_path(article) do %>
+            <td class="info"><%= link_to article.title, edit_article_path(article)%></td>
+            <td class="info"><%= t article.published %></td>
+            <td class="info"><%= link_to edit_article_path(article) do %>
                   <span class="glyphicon glyphicon-pencil"></span>
                 <% end %>
             </td>
@@ -81,7 +76,7 @@
           <%= image_tag article.image.url %>
           <hr>
           <p class="well"><span class="glyphicon glyphicon-time"></span>Posté le:<%= article.created_at.strftime("%d/%m/20%y") %><br><%= truncate(article.content, length: 200) %></p>
-          <%= link_to 'More', article, class: "btn btn-primary" %>
+          <%= link_to t('.more'), article, class: "btn btn-primary" %>
           <hr>
         </div>
       <% end %>
