@@ -1,0 +1,30 @@
+fr:
+  "false": "Non"
+  "true": "Oui"
+  submit: 'Valider'
+  reset_search: 'Reset'
+  separate_each_tag_with_a_comma: 'Séparer chaque tag par une virgule.'
+  datetime:
+    distance_in_words:
+      less_than_x_minutes:
+        one: "moins de une minute"
+        other: "moins de %{count} minutes"
+      x_minutes:
+        one: "1 minute"
+        other: "%{count} minutes"
+      about_x_hours:
+        one: "environ 1 heure"
+        other: "environ %{count} heures"
+  activerecord:
+    models:
+      article: 'Article'
+      comment: 'Commentaire'
+    attributes:
+      article:
+        title: 'Titre'
+        published: 'Publié?'
+  articles:
+    index:
+      title:   'Titre'
+      content: 'Contenu'
+      more: 'Lire plus'
