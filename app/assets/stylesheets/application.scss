@@ -71,5 +71,21 @@ h2 {
 }
 
 .color_white {
-    color: white;
+    color: white !important;
 }
+
+.color_black {
+    color: black;
+}
+
+.navbar-toggler {
+  visibility:hidden;
+}
+
+@media only screen and (max-width:750px) {
+ .navbar-toggler {
+  visibility:visible;
+  margin-left: 6em;
+  margin-top: 0.5em;
+  }
+ }

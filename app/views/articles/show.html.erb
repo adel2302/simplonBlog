@@ -14,13 +14,13 @@
 <% if user_signed_in? %>
   <div class="row">
     <div class="col-md-12 text-center">
-      <p>
+      <p class="color_white">
         <%= link_to like_article_path(@article), method: :put, class: "btn btn-primary" do %>
           <span class="glyphicon glyphicon-thumbs-up"></span>
         <% end %>
         <%= @article.get_upvotes.size %>
         <%= link_to dislike_article_path(@article), method: :put, class: "btn btn-primary" do %>
-          <span class="glyphicon glyphicon-thumbs-down"></span>
+          <span class="glyphicon glyphicon-thumbs-down "></span>
         <% end %>
         <%= @article.get_downvotes.size %>
       </p>
@@ -59,7 +59,7 @@
 <% else %>
   <div class="row">
     <div class="col-md-4">
-      <p>Connectez vous pour laisser un commentaire.</p>
+      <p class="color_white">Connectez vous pour laisser un commentaire.</p>
     </div>
   </div>
   <div class="row">
