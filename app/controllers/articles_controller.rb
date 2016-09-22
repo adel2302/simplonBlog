@@ -13,7 +13,7 @@ class ArticlesController < ApplicationController
         @q = Article.ransack(params[:q])
         @articles = @q.result.order(created_at: :desc)
       else
-        @articles = Article.order(created_at: :desc).page(params[:page]).per(10)
+        @articles = Article.order(created_at: :desc).page(params[:page]).per(4)
       end
     end
   end
